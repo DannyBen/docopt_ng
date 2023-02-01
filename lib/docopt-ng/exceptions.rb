@@ -11,8 +11,8 @@ module DocoptNG
       end
     end
 
-    def initialize(message='')
-      super (message + "\n" + self.class.usage).strip
+    def initialize(message = '')
+      super "#{message}\n#{self.class.usage}".strip
     end
   end
 end

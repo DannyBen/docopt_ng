@@ -5,26 +5,31 @@ module DocoptNG
     attr_reader :short, :long
     attr_accessor :argcount
 
-    def initialize(short=nil, long=nil, argcount=0, value=false)
+    def initialize(short = nil, long = nil, argcount = 0, value = false)
       unless [0, 1].include? argcount
         raise RuntimeError
       end
 
-      @short, @long = short, long
-      @argcount, @value = argcount, value
+      @short = short
+      @long = long
+      @argcount = argcount
+      @value = value
 
-      if value == false and argcount > 0
-        @value = nil
+      @value = if value == false and argcount.positive?
+        nil
       else
-        @value = value
+        value
       end
     end
 
     def self.parse(option_description)
-      short, long, argcount, value = nil, nil, 0, false
+      short = nil
+      long = nil
+      argcount = 0
+      value = false
       options, _, description = option_description.strip.partition('  ')
 
-      options = options.gsub(',', ' ').gsub('=', ' ')
+      options = options.tr(',', ' ').tr('=', ' ')
 
       for s in options.split
         if s.start_with?('--')
@@ -35,28 +40,28 @@ module DocoptNG
           argcount = 1
         end
       end
-      if argcount > 0
+      if argcount.positive?
         matched = description.scan(/\[default: (.*)\]/i)
-        value = matched[0][0] if matched.count > 0
+        value = matched[0][0] if matched.count.positive?
       end
       new(short, long, argcount, value)
     end
 
     def single_match(left)
       left.each_with_index do |p, n|
-        if self.name == p.name
+        if name == p.name
           return [n, p]
         end
       end
-      return [nil, nil]
+      [nil, nil]
     end
 
     def name
-      return self.long ? self.long : self.short
+      long || short
     end
 
     def inspect
-      return "Option(#{self.short}, #{self.long}, #{self.argcount}, #{self.value})"
+      "Option(#{short}, #{long}, #{argcount}, #{value})"
     end
   end
 end

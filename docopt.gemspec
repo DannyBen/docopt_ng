@@ -5,14 +5,14 @@ require 'docopt-ng/version'
 Gem::Specification.new do |s|
   s.name        = 'docopt-ng'
   s.version     = DocoptNG::VERSION
-  s.summary     = "A command line option parser that will make you smile"
-  s.description = "Parse command line arguments from nothing more than a usage message"
+  s.summary     = 'A command line option parser that will make you smile'
+  s.description = 'Parse command line arguments from nothing more than a usage message'
   s.authors     = [
-    "Alex Speller",
-    "Blake Williams",
-    "Danny Ben Shitrit",
-    "Nima Johari",
-    "Vladimir Keleshev",
+    'Alex Speller',
+    'Blake Williams',
+    'Danny Ben Shitrit',
+    'Nima Johari',
+    'Vladimir Keleshev',
   ]
   s.email       = 'db@dannyben.com'
   s.files       = Dir['README.md', 'lib/**/*']
