@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = 'docopt-ng'
   s.version     = DocoptNG::VERSION
   s.summary     = "A command line option parser that will make you smile"
-  s.description = "Extract command line options from usage messages"
+  s.description = "Parse command line arguments from nothing more than a usage message"
   s.authors     = [
     "Alex Speller",
     "Blake Williams",
