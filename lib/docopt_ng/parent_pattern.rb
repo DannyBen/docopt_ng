@@ -1,4 +1,4 @@
-require 'docopt-ng/pattern'
+require 'docopt_ng/pattern'
 
 module DocoptNG
   class ParentPattern < Pattern

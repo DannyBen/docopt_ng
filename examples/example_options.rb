@@ -1,4 +1,4 @@
-require 'docopt-ng/docopt'
+require 'docopt_ng/docopt'
 
 doc = <<~DOCOPT
   Example of program with many options using docopt.

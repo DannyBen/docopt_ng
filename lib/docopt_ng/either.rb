@@ -1,4 +1,4 @@
-require 'docopt-ng/parent_pattern'
+require 'docopt_ng/parent_pattern'
 
 module DocoptNG
   class Either < ParentPattern

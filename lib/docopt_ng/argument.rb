@@ -1,4 +1,4 @@
-require 'docopt-ng/child_pattern'
+require 'docopt_ng/child_pattern'
 
 module DocoptNG
   class Argument < ChildPattern

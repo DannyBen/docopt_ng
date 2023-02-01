@@ -1,4 +1,4 @@
-require 'docopt-ng/docopt'
+require 'docopt_ng/docopt'
 
 doc = <<~DOCOPT
   Usage: #{__FILE__} [-h | --help] (ODD EVEN)...

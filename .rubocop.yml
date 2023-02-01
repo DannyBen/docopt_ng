@@ -16,9 +16,9 @@ AllCops:
 # TODO: These can probably be fixed without side effects
 Style/OptionalBooleanParameter:
   Exclude:
-    - 'lib/docopt-ng.rb'
-    - 'lib/docopt-ng/command.rb'
-    - 'lib/docopt-ng/option.rb'
+    - 'lib/docopt_ng.rb'
+    - 'lib/docopt_ng/command.rb'
+    - 'lib/docopt_ng/option.rb'
 
 # Fixing these will take a major rewrite
 Metrics/AbcSize: { Max: 58 }

@@ -1,4 +1,4 @@
-require 'docopt-ng/argument'
+require 'docopt_ng/argument'
 
 module DocoptNG
   class Command < Argument
