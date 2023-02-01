@@ -1,4 +1,4 @@
-require 'docopt-ng/pattern'
+require 'docopt_ng/pattern'
 
 module DocoptNG
   class ParentPattern < Pattern
@@ -9,15 +9,15 @@ module DocoptNG
     end
 
     def inspect
-      childstr = self.children.map { |a| a.inspect }
-      return "#{self.class.name}(#{childstr.join(", ")})"
+      childstr = children.map(&:inspect)
+      "#{self.class.name}(#{childstr.join(', ')})"
     end
 
     def flat(*types)
       if types.include?(self.class)
         [self]
       else
-        self.children.map { |c| c.flat(*types) }.flatten
+        children.map { |c| c.flat(*types) }.flatten
       end
     end
   end

@@ -5,7 +5,7 @@ require 'shellwords'
 require 'bundler'
 Bundler.require :default
 
-require 'docopt-ng'
+require 'docopt_ng'
 
 module RSpecMixin
   def runner(doc, argv)

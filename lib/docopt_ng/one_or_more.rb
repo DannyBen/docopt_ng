@@ -1,9 +1,9 @@
-require 'docopt-ng/parent_pattern'
+require 'docopt_ng/parent_pattern'
 
 module DocoptNG
   class OneOrMore < ParentPattern
-    def match(left, collected=nil)
-      if self.children.count != 1
+    def match(left, collected = nil)
+      if children.count != 1
         raise RuntimeError
       end
 
@@ -15,17 +15,19 @@ module DocoptNG
       times = 0
       while matched
         # could it be that something didn't match but changed l or c?
-        matched, l, c = self.children[0].match(l, c)
+        matched, l, c = children[0].match(l, c)
         times += (matched ? 1 : 0)
         if l_ == l
           break
         end
+
         l_ = l
       end
       if times >= 1
         return [true, l, c]
       end
-      return [false, left, collected]
+
+      [false, left, collected]
     end
   end
 end

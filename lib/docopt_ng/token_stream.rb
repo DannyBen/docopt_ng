@@ -13,11 +13,11 @@ module DocoptNG
     end
 
     def move
-      return self.shift
+      shift
     end
 
     def current
-      return self[0]
+      self[0]
     end
   end
 end

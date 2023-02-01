@@ -1,19 +1,19 @@
-require 'docopt-ng/parent_pattern'
+require 'docopt_ng/parent_pattern'
 
 module DocoptNG
   class Required < ParentPattern
-    def match(left, collected=nil)
+    def match(left, collected = nil)
       collected ||= []
       l = left
       c = collected
 
-      for p in self.children
+      children.each do |p|
         matched, l, c = p.match(l, c)
-        if not matched
+        unless matched
           return [false, left, collected]
         end
       end
-      return [true, l, c]
+      [true, l, c]
     end
   end
 end
