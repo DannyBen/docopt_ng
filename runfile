@@ -1,0 +1,7 @@
+require 'byebug'
+require 'lp'
+
+title   'Docopt NG'
+
+import 'dev/debug'
+import_gem 'runfile-tasks/gem', gemname: 'docopt-ng'

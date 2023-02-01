@@ -3,4 +3,5 @@
 /dev
 /doc
 /Gemfile.lock
+/spec/status.txt
 /tmp

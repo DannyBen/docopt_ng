@@ -1,0 +1,703 @@
+---
+- docopt: 'Usage: run server run'
+  commands:
+    run: 'Usage: run server run'
+    run server run:
+      server: true
+      run: true
+- docopt: 'Usage: prog'
+  commands:
+    prog: {}
+    prog --xxx: 'Usage: prog'
+- docopt: |
+    Usage: prog [options]
+
+    -a  All.
+  commands:
+    prog:
+      "-a": false
+    prog -a:
+      "-a": true
+    prog -x: 'Usage: prog [options]'
+- docopt: |
+    Usage: prog [options]
+
+    --all  All.
+  commands:
+    prog:
+      "--all": false
+    prog --all:
+      "--all": true
+    prog --xxx: 'Usage: prog [options]'
+- docopt: |
+    Usage: prog [options]
+
+    -v, --verbose  Verbose.
+  commands:
+    prog --verbose:
+      "--verbose": true
+    prog --ver:
+      "--verbose": true
+    prog -v:
+      "--verbose": true
+- docopt: |
+    Usage: prog [options]
+
+    -p PATH
+  commands:
+    prog -p home/:
+      "-p": home/
+    prog -phome/:
+      "-p": home/
+    prog -p: |-
+      -p requires argument
+      Usage: prog [options]
+- docopt: |
+    Usage: prog [options]
+
+    --path <path>
+  commands:
+    prog --path home/:
+      "--path": home/
+    prog --path=home/:
+      "--path": home/
+    prog --pa home/:
+      "--path": home/
+    prog --pa=home/:
+      "--path": home/
+    prog --path: |-
+      --path requires argument
+      Usage: prog [options]
+- docopt: |
+    Usage: prog [options]
+
+    -p PATH, --path=<path>  Path to files.
+  commands:
+    prog -proot:
+      "--path": root
+- docopt: |
+    Usage: prog [options]
+
+    -p --path PATH  Path to files.
+  commands:
+    prog -p root:
+      "--path": root
+    prog --path root:
+      "--path": root
+- docopt: |
+    Usage: prog [options]
+
+    -p PATH  Path to files [default: ./]
+  commands:
+    prog:
+      "-p": "./"
+    prog -phome:
+      "-p": home
+- docopt: |
+    UsAgE: prog [options]
+
+    --path=<files>  Path to files
+                    [dEfAuLt: /root]
+  commands:
+    prog:
+      "--path": "/root"
+    prog --path=home:
+      "--path": home
+- docopt: |
+    usage: prog [options]
+
+    -a        Add
+    -r        Remote
+    -m <msg>  Message
+  commands:
+    prog -a -r -m Hello:
+      "-a": true
+      "-r": true
+      "-m": Hello
+    prog -armyourass:
+      "-a": true
+      "-r": true
+      "-m": yourass
+    prog -a -r:
+      "-a": true
+      "-r": true
+      "-m": 
+- docopt: |
+    Usage: prog [options]
+
+    --version
+    --verbose
+  commands:
+    prog --version:
+      "--version": true
+      "--verbose": false
+    prog --verbose:
+      "--version": false
+      "--verbose": true
+    prog --ver: |-
+      --ver is not a unique prefix: --version, --verbose?
+      Usage: prog [options]
+    prog --verb:
+      "--version": false
+      "--verbose": true
+- docopt: |
+    usage: prog [-a -r -m <msg>]
+
+    -a        Add
+    -r        Remote
+    -m <msg>  Message
+  commands:
+    prog -armyourass:
+      "-a": true
+      "-r": true
+      "-m": yourass
+- docopt: |
+    usage: prog [-armmsg]
+
+    -a        Add
+    -r        Remote
+    -m <msg>  Message
+  commands:
+    prog -a -r -m Hello:
+      "-a": true
+      "-r": true
+      "-m": Hello
+- docopt: |
+    usage: prog -a -b
+
+    -a
+    -b
+  commands:
+    prog -a -b:
+      "-a": true
+      "-b": true
+    prog -b -a:
+      "-a": true
+      "-b": true
+    prog -a: 'usage: prog -a -b'
+    prog: 'usage: prog -a -b'
+- docopt: |
+    usage: prog (-a -b)
+
+    -a
+    -b
+  commands:
+    prog -a -b:
+      "-a": true
+      "-b": true
+    prog -b -a:
+      "-a": true
+      "-b": true
+    prog -a: 'usage: prog (-a -b)'
+    prog: 'usage: prog (-a -b)'
+- docopt: |
+    usage: prog [-a] -b
+
+    -a
+    -b
+  commands:
+    prog -a -b:
+      "-a": true
+      "-b": true
+    prog -b -a:
+      "-a": true
+      "-b": true
+    prog -a: 'usage: prog [-a] -b'
+    prog -b:
+      "-a": false
+      "-b": true
+    prog: 'usage: prog [-a] -b'
+- docopt: |
+    usage: prog [(-a -b)]
+
+    -a
+    -b
+  commands:
+    prog -a -b:
+      "-a": true
+      "-b": true
+    prog -b -a:
+      "-a": true
+      "-b": true
+    prog -a: 'usage: prog [(-a -b)]'
+    prog -b: 'usage: prog [(-a -b)]'
+    prog:
+      "-a": false
+      "-b": false
+- docopt: |
+    usage: prog (-a|-b)
+
+    -a
+    -b
+  commands:
+    prog -a -b: 'usage: prog (-a|-b)'
+    prog: 'usage: prog (-a|-b)'
+    prog -a:
+      "-a": true
+      "-b": false
+    prog -b:
+      "-a": false
+      "-b": true
+- docopt: |
+    usage: prog [ -a | -b ]
+
+    -a
+    -b
+  commands:
+    prog -a -b: 'usage: prog [ -a | -b ]'
+    prog:
+      "-a": false
+      "-b": false
+    prog -a:
+      "-a": true
+      "-b": false
+    prog -b:
+      "-a": false
+      "-b": true
+- docopt: 'usage: prog <arg>'
+  commands:
+    prog 10:
+      "<arg>": '10'
+    prog 10 20: 'usage: prog <arg>'
+    prog: 'usage: prog <arg>'
+- docopt: 'usage: prog [<arg>]'
+  commands:
+    prog 10:
+      "<arg>": '10'
+    prog 10 20: 'usage: prog [<arg>]'
+    prog:
+      "<arg>": 
+- docopt: 'usage: prog <kind> <name> <type>'
+  commands:
+    prog 10 20 40:
+      "<kind>": '10'
+      "<name>": '20'
+      "<type>": '40'
+    prog 10 20: 'usage: prog <kind> <name> <type>'
+    prog: 'usage: prog <kind> <name> <type>'
+- docopt: 'usage: prog <kind> [<name> <type>]'
+  commands:
+    prog 10 20 40:
+      "<kind>": '10'
+      "<name>": '20'
+      "<type>": '40'
+    prog 10 20:
+      "<kind>": '10'
+      "<name>": '20'
+      "<type>": 
+    prog: 'usage: prog <kind> [<name> <type>]'
+- docopt: 'usage: prog [<kind> | <name> <type>]'
+  commands:
+    prog 10 20 40: 'usage: prog [<kind> | <name> <type>]'
+    prog 20 40:
+      "<kind>": 
+      "<name>": '20'
+      "<type>": '40'
+    prog:
+      "<kind>": 
+      "<name>": 
+      "<type>": 
+- docopt: |
+    usage: prog (<kind> --all | <name>)
+
+    --all
+  commands:
+    prog 10 --all:
+      "<kind>": '10'
+      "--all": true
+      "<name>": 
+    prog 10:
+      "<kind>": 
+      "--all": false
+      "<name>": '10'
+    prog: 'usage: prog (<kind> --all | <name>)'
+- docopt: 'usage: prog [<name> <name>]'
+  commands:
+    prog 10 20:
+      "<name>":
+      - '10'
+      - '20'
+    prog 10:
+      "<name>":
+      - '10'
+    prog:
+      "<name>": []
+- docopt: 'usage: prog [(<name> <name>)]'
+  commands:
+    prog 10 20:
+      "<name>":
+      - '10'
+      - '20'
+    prog 10: 'usage: prog [(<name> <name>)]'
+    prog:
+      "<name>": []
+- docopt: 'usage: prog NAME...'
+  commands:
+    prog 10 20:
+      NAME:
+      - '10'
+      - '20'
+    prog 10:
+      NAME:
+      - '10'
+    prog: 'usage: prog NAME...'
+- docopt: 'usage: prog [NAME]...'
+  commands:
+    prog 10 20:
+      NAME:
+      - '10'
+      - '20'
+    prog 10:
+      NAME:
+      - '10'
+    prog:
+      NAME: []
+- docopt: 'usage: prog [NAME...]'
+  commands:
+    prog 10 20:
+      NAME:
+      - '10'
+      - '20'
+    prog 10:
+      NAME:
+      - '10'
+    prog:
+      NAME: []
+- docopt: 'usage: prog [NAME [NAME ...]]'
+  commands:
+    prog 10 20:
+      NAME:
+      - '10'
+      - '20'
+    prog 10:
+      NAME:
+      - '10'
+    prog:
+      NAME: []
+- docopt: |
+    usage: prog (NAME | --foo NAME)
+
+    --foo
+  commands:
+    prog 10:
+      NAME: '10'
+      "--foo": false
+    prog --foo 10:
+      NAME: '10'
+      "--foo": true
+    prog --foo=10: |-
+      --foo must not have an argument
+      usage: prog (NAME | --foo NAME)
+- docopt: |
+    usage: prog (NAME | --foo) [--bar | NAME]
+
+    --foo
+    --bar
+  commands:
+    prog 10:
+      NAME:
+      - '10'
+      "--foo": false
+      "--bar": false
+    prog 10 20:
+      NAME:
+      - '10'
+      - '20'
+      "--foo": false
+      "--bar": false
+    prog --foo --bar:
+      NAME: []
+      "--foo": true
+      "--bar": true
+- docopt: |
+    Naval Fate.
+
+    Usage:
+      prog ship new <name>...
+      prog ship [<name>] move <x> <y> [--speed=<kn>]
+      prog ship shoot <x> <y>
+      prog mine (set|remove) <x> <y> [--moored|--drifting]
+      prog -h | --help
+      prog --version
+
+    Options:
+      -h --help     Show this screen.
+      --version     Show version.
+      --speed=<kn>  Speed in knots [default: 10].
+      --moored      Mored (anchored) mine.
+      --drifting    Drifting mine.
+  commands:
+    prog ship Guardian move 150 300 --speed=20:
+      ship: true
+      new: false
+      "<name>":
+      - Guardian
+      move: true
+      "<x>": '150'
+      "<y>": '300'
+      "--speed": '20'
+      shoot: false
+      mine: false
+      set: false
+      remove: false
+      "--moored": false
+      "--drifting": false
+      "--help": false
+      "--version": false
+- docopt: 'usage: prog --hello'
+  commands:
+    prog --hello:
+      "--hello": true
+- docopt: 'usage: prog [--hello=<world>]'
+  commands:
+    prog:
+      "--hello": 
+    prog --hello wrld:
+      "--hello": wrld
+- docopt: 'usage: prog [-o]'
+  commands:
+    prog:
+      "-o": false
+    prog -o:
+      "-o": true
+- docopt: 'usage: prog [-opr]'
+  commands:
+    prog -op:
+      "-o": true
+      "-p": true
+      "-r": false
+- docopt: 'usage: prog --aabb | --aa'
+  commands:
+    prog --aa:
+      "--aabb": false
+      "--aa": true
+    prog --a: |-
+      --a is not a unique prefix: --aabb, --aa?
+      usage: prog --aabb | --aa
+- docopt: 'Usage: prog -v'
+  commands:
+    prog -v:
+      "-v": true
+- docopt: 'Usage: prog [-v -v]'
+  commands:
+    prog:
+      "-v": 0
+    prog -v:
+      "-v": 1
+    prog -vv:
+      "-v": 2
+- docopt: 'Usage: prog -v ...'
+  commands:
+    prog: 'Usage: prog -v ...'
+    prog -v:
+      "-v": 1
+    prog -vv:
+      "-v": 2
+    prog -vvvvvv:
+      "-v": 6
+- docopt: 'Usage: prog [-v | -vv | -vvv]'
+  commands:
+    prog:
+      "-v": 0
+    prog -v:
+      "-v": 1
+    prog -vv:
+      "-v": 2
+    prog -vvvv: 'Usage: prog [-v | -vv | -vvv]'
+- docopt: 'usage: prog [--ver --ver]'
+  commands:
+    prog --ver --ver:
+      "--ver": 2
+- docopt: 'usage: prog [go]'
+  commands:
+    prog go:
+      go: true
+- docopt: 'usage: prog [go go]'
+  commands:
+    prog:
+      go: 0
+    prog go:
+      go: 1
+    prog go go:
+      go: 2
+    prog go go go: 'usage: prog [go go]'
+- docopt: 'usage: prog go...'
+  commands:
+    prog go go go go go:
+      go: 5
+- docopt: |
+    Usage: prog [options] A
+
+    -q  Be quiet
+    -v  Be verbose.
+  commands:
+    prog arg:
+      "-q": false
+      "-v": false
+      A: arg
+    prog -v arg:
+      "-q": false
+      "-v": true
+      A: arg
+    prog -q arg:
+      "-q": true
+      "-v": false
+      A: arg
+- docopt: 'usage: prog [-]'
+  commands:
+    prog -:
+      "-": true
+    prog:
+      "-": false
+- docopt: 'usage: prog [NAME [NAME ...]]'
+  commands:
+    prog a b:
+      NAME:
+      - a
+      - b
+    prog:
+      NAME: []
+- docopt: |
+    usage: prog [options]
+
+    -a        Add
+    -m <msg>  Message
+  commands:
+    prog -a:
+      "-a": true
+      "-m": 
+- docopt: 'usage: prog --hello'
+  commands:
+    prog --hello:
+      "--hello": true
+- docopt: 'usage: prog [--hello=<world>]'
+  commands:
+    prog:
+      "--hello": 
+    prog --hello wrld:
+      "--hello": wrld
+- docopt: 'usage: prog [-o]'
+  commands:
+    prog:
+      "-o": false
+    prog -o:
+      "-o": true
+- docopt: 'usage: prog [-opr]'
+  commands:
+    prog -op:
+      "-o": true
+      "-p": true
+      "-r": false
+- docopt: 'usage: git [-v | --verbose]'
+  commands:
+    prog -v:
+      "-v": true
+      "--verbose": false
+- docopt: 'usage: git remote [-v | --verbose]'
+  commands:
+    prog remote -v:
+      remote: true
+      "-v": true
+      "--verbose": false
+- docopt: 'usage: prog'
+  commands:
+    prog: {}
+- docopt: |
+    usage: prog
+           prog <a> <b>
+  commands:
+    prog 1 2:
+      "<a>": '1'
+      "<b>": '2'
+    prog:
+      "<a>": 
+      "<b>": 
+- docopt: |
+    usage: prog <a> <b>
+           prog
+  commands:
+    prog:
+      "<a>": 
+      "<b>": 
+- docopt: 'usage: prog [--file=<f>]'
+  commands:
+    prog:
+      "--file": 
+- docopt: |
+    usage: prog [--file=<f>]
+
+    --file <a>
+  commands:
+    prog:
+      "--file": 
+- docopt: |
+    Usage: prog [-a <host:port>]
+
+    -a, --address <host:port>  TCP address [default: localhost:6283].
+  commands:
+    prog:
+      "--address": localhost:6283
+- docopt: 'usage: prog --long=<arg> ...'
+  commands:
+    prog --long one:
+      "--long":
+      - one
+    prog --long one --long two:
+      "--long":
+      - one
+      - two
+- docopt: 'usage: prog (go <direction> --speed=<km/h>)...'
+  commands:
+    prog  go left --speed=5  go right --speed=9:
+      go: 2
+      "<direction>":
+      - left
+      - right
+      "--speed":
+      - '5'
+      - '9'
+- docopt: |
+    usage: prog [options] -a
+
+    -a
+  commands:
+    prog -a:
+      "-a": true
+- docopt: |
+    usage: prog [-o <o>]...
+
+    -o <o>  [default: x]
+  commands:
+    prog -o this -o that:
+      "-o":
+      - this
+      - that
+    prog:
+      "-o":
+      - x
+- docopt: |
+    usage: prog [-o <o>]...
+
+    -o <o>  [default: x y]
+  commands:
+    prog -o this:
+      "-o":
+      - this
+    prog:
+      "-o":
+      - x
+      - "y"
+- docopt: |
+    usage: prog -pPATH
+
+    -p PATH
+  commands:
+    prog -pHOME:
+      "-p": HOME
+- docopt: 'Usage: foo (--xx=x|--yy=y)...'
+  commands:
+    prog --xx=1 --yy=2:
+      "--xx":
+      - '1'
+      "--yy":
+      - '2'

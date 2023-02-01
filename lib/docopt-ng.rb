@@ -1,4 +1,4 @@
-module Docopt
+module DocoptNG
   class DocoptLanguageError < SyntaxError
   end
 
