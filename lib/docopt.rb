@@ -587,18 +587,13 @@ module Docopt
     end
 
     def formal_usage(printable_usage)
-      pu = printable_usage.split().drop(1)  # split and drop "usage:"
+      pu = printable_usage[/usage:(.*)/mi, 1]
 
-      ret = []
-      for s in pu.drop(1)
-        if s == pu[0]
-          ret << ') | ('
-        else
-          ret << s
-        end
+      lines = pu.lines(chomp: true).reject(&:empty?).map do |a|
+        "( #{a.split.drop(1).join(' ')} )"
       end
 
-      return '( ' + ret.join(' ') + ' )'
+      lines.join ' | '
     end
 
     def dump_patterns(pattern, indent=0)
