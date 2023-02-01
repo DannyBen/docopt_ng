@@ -1,4 +1,4 @@
-require File.expand_path("../../lib/docopt.rb", __FILE__)
+require 'docopt-ng/docopt'
 
 doc = <<DOCOPT
 Example of program with many options using docopt.
@@ -37,7 +37,6 @@ Options:
 DOCOPT
 
 begin
-  require "pp"
   pp Docopt::docopt(doc)
 rescue Docopt::Exit => e
   puts e.message

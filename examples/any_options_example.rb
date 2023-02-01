@@ -1,4 +1,4 @@
-require File.expand_path("../../lib/docopt.rb", __FILE__)
+require 'docopt-ng/docopt'
 
 doc = <<DOCOPT
 Example of program which uses [options] shortcut in pattern.
@@ -18,7 +18,7 @@ DOCOPT
 
 
 begin
-  puts Docopt::docopt(doc, version: '1.0.0rc2').to_s
+  pp Docopt::docopt(doc, version: '1.0.0rc2')
 rescue Docopt::Exit => e
   puts e.message
 end
