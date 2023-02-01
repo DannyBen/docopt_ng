@@ -14,7 +14,7 @@ module DocoptNG
     end
 
     def flat(*types)
-      if types.empty? or types.include?(self.class)
+      if types.empty? || types.include?(self.class)
         [self]
       else
         []
@@ -32,7 +32,7 @@ module DocoptNG
       left_.slice!(pos)
 
       same_name = collected.select { |a| a.name == name }
-      if @value.is_a? Array or @value.is_a? Integer
+      if @value.is_a?(Array) || @value.is_a?(Integer)
         increment = if @value.is_a? Integer
           1
         else

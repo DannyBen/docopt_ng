@@ -4,7 +4,7 @@ module DocoptNG
   class Optional < ParentPattern
     def match(left, collected = nil)
       collected ||= []
-      for p in children
+      children.each do |p|
         _, left, collected = p.match(left, collected)
       end
       [true, left, collected]

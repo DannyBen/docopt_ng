@@ -15,7 +15,7 @@ module DocoptNG
       @argcount = argcount
       @value = value
 
-      @value = if value == false and argcount.positive?
+      @value = if (value == false) && argcount.positive?
         nil
       else
         value
@@ -31,7 +31,7 @@ module DocoptNG
 
       options = options.tr(',', ' ').tr('=', ' ')
 
-      for s in options.split
+      options.split.each do |s|
         if s.start_with?('--')
           long = s
         elsif s.start_with?('-')

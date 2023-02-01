@@ -5,7 +5,7 @@ module DocoptNG
     def match(left, collected = nil)
       collected ||= []
       outcomes = []
-      for p in children
+      children.each do |p|
         matched, = found = p.match(left, collected)
         if matched
           outcomes << found

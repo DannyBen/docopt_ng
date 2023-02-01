@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 require:
   - rubocop-performance
   - rubocop-rspec
@@ -14,3 +12,19 @@ AllCops:
   Exclude:
     - debug.rb
     - dev/**/*
+
+# TODO: These can probably be fixed without side effects
+Style/OptionalBooleanParameter:
+  Exclude:
+    - 'lib/docopt-ng.rb'
+    - 'lib/docopt-ng/command.rb'
+    - 'lib/docopt-ng/option.rb'
+
+# Fixing these will take a major rewrite
+Metrics/AbcSize: { Max: 58 }
+Metrics/BlockNesting: { Max: 5 }
+Metrics/CyclomaticComplexity: { Max: 22 }
+Metrics/MethodLength: { Max: 40 }
+Metrics/ModuleLength: { Max: 241 }
+Metrics/ParameterLists: { MaxOptionalParameters: 4 }
+Metrics/PerceivedComplexity: { Max: 24 }

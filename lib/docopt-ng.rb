@@ -20,11 +20,11 @@ module DocoptNG
         raise RuntimeError
       end
 
-      value = nil if eq == value and eq == ''
+      value = nil if (eq == value) && (eq == '')
 
       similar = options.select { |o| o.long and o.long == long }
 
-      if tokens.error == Exit and similar == []
+      if (tokens.error == Exit) && (similar == [])
         similar = options.select { |o| o.long and o.long.start_with?(long) }
       end
 
@@ -148,7 +148,6 @@ module DocoptNG
 
     def parse_atom(tokens, options)
       token = tokens.current
-      result = []
 
       if ['(', '['].include? token
         tokens.move
@@ -159,7 +158,9 @@ module DocoptNG
           matching = ']'
           pattern = Optional
         end
+
         result = pattern.new(*parse_expr(tokens, options))
+
         if tokens.move != matching
           raise tokens.error, "unmatched '#{token}'"
         end
@@ -168,11 +169,11 @@ module DocoptNG
       elsif token == 'options'
         tokens.move
         [AnyOptions.new]
-      elsif token.start_with?('--') and token != '--'
+      elsif token.start_with?('--') && (token != '--')
         parse_long(tokens, options)
-      elsif token.start_with?('-') and !['-', '--'].include? token
+      elsif token.start_with?('-') && !['-', '--'].include?(token)
         parse_shorts(tokens, options)
-      elsif (token.start_with?('<') and token.end_with?('>')) or (token.upcase == token && token.match(/[A-Z]/))
+      elsif (token.start_with?('<') && token.end_with?('>')) || (token.upcase == token && token.match(/[A-Z]/))
         [Argument.new(tokens.move)]
       else
         [Command.new(tokens.move)]
@@ -182,14 +183,12 @@ module DocoptNG
     def parse_argv(tokens, options, options_first = false)
       parsed = []
       until tokens.current.nil?
-        if tokens.current == '--'
+        if tokens.current == '--' || options_first
           return parsed + tokens.map { |v| Argument.new(nil, v) }
         elsif tokens.current.start_with?('--')
           parsed += parse_long(tokens, options)
-        elsif tokens.current.start_with?('-') and tokens.current != '-'
+        elsif tokens.current.start_with?('-') && (tokens.current != '-')
           parsed += parse_shorts(tokens, options)
-        elsif options_first
-          return parsed + tokens.map { |v| Argument.new(nil, v) }
         else
           parsed << Argument.new(nil, tokens.move)
         end
@@ -199,7 +198,7 @@ module DocoptNG
 
     def parse_defaults(doc)
       split = doc.split(/^ *(<\S+?>|-\S+?)/).drop(1)
-      split = split.each_slice(2).reject { |pair| pair.count != 2 }.map { |s1, s2| s1 + s2 }
+      split = split.each_slice(2).select { |pair| pair.count == 2 }.map { |s1, s2| s1 + s2 }
       split.select { |s| s.start_with?('-') }.map { |s| Option.parse(s) }
     end
 
@@ -231,7 +230,7 @@ module DocoptNG
       if pattern.instance_of?(Array)
         if pattern.count.positive?
           out << ws << "[\n"
-          for p in pattern
+          pattern.each do |p|
             out << dump_patterns(p, indent + 1).rstrip << "\n"
           end
           out << ws << "]\n"
@@ -241,7 +240,7 @@ module DocoptNG
 
       elsif pattern.class.ancestors.include?(ParentPattern)
         out << ws << pattern.class.name << "(\n"
-        for p in pattern.children
+        pattern.children.each do |p|
           out << dump_patterns(p, indent + 1).rstrip << "\n"
         end
         out << ws << ")\n"
@@ -253,11 +252,12 @@ module DocoptNG
     end
 
     def extras(help, version, options, doc)
-      if help and options.any? { |o| ['-h', '--help'].include?(o.name) && o.value }
+      help_flags = ['-h', '--help']
+      if help && options.any? { |o| help_flags.include?(o.name) && o.value }
         Exit.set_usage(nil)
         raise Exit, doc.strip
       end
-      return unless version and options.any? { |o| o.name == '--version' && o.value }
+      return unless version && options.any? { |o| o.name == '--version' && o.value }
 
       Exit.set_usage(nil)
       raise Exit, version
@@ -282,8 +282,8 @@ module DocoptNG
       matched, left, collected = pattern.fix.match(argv)
       collected ||= []
 
-      if matched and left.count.zero?
-        return (pattern.flat + collected).map { |a| [a.name, a.value] }.to_h
+      if matched && left.count.zero?
+        return (pattern.flat + collected).to_h { |a| [a.name, a.value] }
       end
 
       raise Exit

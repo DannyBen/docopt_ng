@@ -7,7 +7,7 @@ module DocoptNG
       l = left
       c = collected
 
-      for p in children
+      children.each do |p|
         matched, l, c = p.match(l, c)
         unless matched
           return [false, left, collected]
