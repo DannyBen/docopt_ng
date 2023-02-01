@@ -1,7 +1,4 @@
 module Docopt
-  VERSION = '0.6.1'
-end
-module Docopt
   class DocoptLanguageError < SyntaxError
   end
 

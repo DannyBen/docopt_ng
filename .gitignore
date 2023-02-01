@@ -1,3 +1,6 @@
-pkg/*
 *.gem
-.bundle
+/coverage
+/dev
+/doc
+/Gemfile.lock
+/tmp

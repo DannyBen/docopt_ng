@@ -1,13 +1,14 @@
-`docopt.rb` – command line option parser, that will make you smile
+Docopt – command line option parser, that will make you smile
 ===============================================================================
+
+---
+
+This is a detached fork of the original [docopt.rb](https://github.com/docopt/docopt.rb)
+
+---
 
 This is the ruby port of [`docopt`](https://github.com/docopt/docopt),
 the awesome option parser written originally in python.
-
-> New in version 0.5.0:
->
-> Repeatable flags and commands are counted if repeated (a-la ssh `-vvv`).
-> Repeatable options with arguments are accumulated into list.
 
 Isn't it awesome how `optparse` and `argparse` generate help messages
 based on your code?!
