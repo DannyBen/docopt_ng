@@ -8,9 +8,12 @@ module DocoptNG
           return [n, Argument.new(name, p.value)]
         end
       end
+
       [nil, nil]
     end
 
+    # TODO: This does not seem to be used, and can be the solution to having
+    #       default values for arguments
     def self.parse(class_, source)
       name = /(<\S*?>)/.match(source)[0]
       value = /\[default: (.*)\]/i.match(source)

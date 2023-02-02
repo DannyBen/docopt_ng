@@ -17,6 +17,7 @@ module DocoptNG
           outcome[1].nil? ? 0 : outcome[1].count
         end
       end
+
       [false, left, collected]
     end
   end

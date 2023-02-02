@@ -14,6 +14,7 @@ module DocoptNG
 
         break
       end
+
       [nil, nil]
     end
   end

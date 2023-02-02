@@ -6,9 +6,7 @@ module DocoptNG
     attr_accessor :argcount
 
     def initialize(short = nil, long = nil, argcount = 0, value = false)
-      unless [0, 1].include? argcount
-        raise RuntimeError
-      end
+      raise RuntimeError unless [0, 1].include? argcount
 
       @short = short
       @long = long
@@ -49,9 +47,7 @@ module DocoptNG
 
     def single_match(left)
       left.each_with_index do |p, n|
-        if name == p.name
-          return [n, p]
-        end
+        return [n, p] if name == p.name
       end
       [nil, nil]
     end

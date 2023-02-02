@@ -9,9 +9,7 @@ module DocoptNG
 
       children.each do |p|
         matched, l, c = p.match(l, c)
-        unless matched
-          return [false, left, collected]
-        end
+        return [false, left, collected] unless matched
       end
       [true, l, c]
     end

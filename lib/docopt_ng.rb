@@ -17,12 +17,10 @@ module_function
 
   def parse_long(tokens, options)
     long, eq, value = tokens.move.partition('=')
-    unless long.start_with?('--')
-      raise RuntimeError
-    end
+
+    raise RuntimeError unless long.start_with?('--')
 
     value = nil if (eq == value) && (eq == '')
-
     similar = options.select { |o| o.long and o.long == long }
 
     if (tokens.error == Exit) && (similar == [])

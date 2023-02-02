@@ -3,9 +3,7 @@ require 'docopt_ng/parent_pattern'
 module DocoptNG
   class OneOrMore < ParentPattern
     def match(left, collected = nil)
-      if children.count != 1
-        raise RuntimeError
-      end
+      raise RuntimeError if children.count != 1
 
       collected ||= []
       l = left
@@ -17,17 +15,16 @@ module DocoptNG
         # could it be that something didn't match but changed l or c?
         matched, l, c = children[0].match(l, c)
         times += (matched ? 1 : 0)
-        if l_ == l
-          break
-        end
+        break if l_ == l
 
         l_ = l
       end
-      if times >= 1
-        return [true, l, c]
-      end
 
-      [false, left, collected]
+      if times.positive?
+        [true, l, c]
+      else
+        [false, left, collected]
+      end
     end
   end
 end

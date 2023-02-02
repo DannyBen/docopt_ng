@@ -24,9 +24,8 @@ module DocoptNG
     def match(left, collected = nil)
       collected ||= []
       pos, match = single_match(left)
-      if match.nil?
-        return [false, left, collected]
-      end
+
+      return [false, left, collected] if match.nil?
 
       left_ = left.dup
       left_.slice!(pos)
@@ -45,6 +44,7 @@ module DocoptNG
         same_name[0].value += increment
         return [true, left_, collected]
       end
+
       [true, left_, collected + [match]]
     end
   end
