@@ -136,7 +136,7 @@ the return hash will be::
 
 ## Help message format
 
-docopt.rb follows the docopt help message format.
+This port of docopt follows the docopt help message format.
 You can find more details at
 [official docopt git repo](https://github.com/docopt/docopt#help-message-format)
 
