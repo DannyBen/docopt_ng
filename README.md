@@ -1,5 +1,9 @@
 # Docopt – command line option parser, that will make you smile
 
+[![Gem Version](https://badge.fury.io/rb/docopt_ng.svg)](https://badge.fury.io/rb/docopt_ng)
+[![Build Status](https://github.com/DannyBen/docopt_ng/workflows/Test/badge.svg)](https://github.com/DannyBen/docopt_ng/actions?query=workflow%3ATest)
+[![Maintainability](https://api.codeclimate.com/v1/badges/31af96bab7913f71dc28/maintainability)](https://codeclimate.com/github/DannyBen/docopt_ng/maintainability)
+
 ---
 
 This is a detached fork of the original [docopt.rb](https://github.com/docopt/docopt.rb).
