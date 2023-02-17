@@ -53,6 +53,7 @@ begin
   pp Docopt::docopt(doc)
 rescue Docopt::Exit => e
   puts e.message
+  exit e.exit_code
 end
 ```
 
