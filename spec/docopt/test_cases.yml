@@ -5,6 +5,18 @@
     run server run:
       server: true
       run: true
+- docopt: |
+    Usage: prog
+
+    --version
+  version: '1.2.3'
+  commands:
+    prog: {}
+    prog --version: '1.2.3 <exit:0>'
+    prog --help: |-
+      Usage: prog
+
+      --version <exit:0>
 - docopt: 'Usage: prog'
   commands:
     prog: {}

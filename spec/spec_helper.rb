@@ -8,8 +8,8 @@ Bundler.require :default
 require 'docopt_ng'
 
 module RSpecMixin
-  def runner(doc, argv)
-    DocoptNG.docopt(doc, argv: argv)
+  def runner(doc, argv, version: nil)
+    DocoptNG.docopt(doc, argv: argv, version: version)
   rescue DocoptNG::Exit => e
     "#{e.message} <exit:#{e.exit_code}>"
   end
