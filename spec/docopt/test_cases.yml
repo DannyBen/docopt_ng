@@ -1,14 +1,14 @@
 ---
 - docopt: 'Usage: run server run'
   commands:
-    run: 'Usage: run server run'
+    run: 'Usage: run server run <exit:1>'
     run server run:
       server: true
       run: true
 - docopt: 'Usage: prog'
   commands:
     prog: {}
-    prog --xxx: 'Usage: prog'
+    prog --xxx: 'Usage: prog <exit:1>'
 - docopt: |
     Usage: prog [options]
 
@@ -18,7 +18,7 @@
       "-a": false
     prog -a:
       "-a": true
-    prog -x: 'Usage: prog [options]'
+    prog -x: 'Usage: prog [options] <exit:1>'
 - docopt: |
     Usage: prog [options]
 
@@ -28,7 +28,7 @@
       "--all": false
     prog --all:
       "--all": true
-    prog --xxx: 'Usage: prog [options]'
+    prog --xxx: 'Usage: prog [options] <exit:1>'
 - docopt: |
     Usage: prog [options]
 
@@ -51,7 +51,7 @@
       "-p": home/
     prog -p: |-
       -p requires argument
-      Usage: prog [options]
+      Usage: prog [options] <exit:1>
 - docopt: |
     Usage: prog [options]
 
@@ -67,7 +67,7 @@
       "--path": home/
     prog --path: |-
       --path requires argument
-      Usage: prog [options]
+      Usage: prog [options] <exit:1>
 - docopt: |
     Usage: prog [options]
 
@@ -136,7 +136,7 @@
       "--verbose": true
     prog --ver: |-
       --ver is not a unique prefix: --version, --verbose?
-      Usage: prog [options]
+      Usage: prog [options] <exit:1>
     prog --verb:
       "--version": false
       "--verbose": true
@@ -174,8 +174,8 @@
     prog -b -a:
       "-a": true
       "-b": true
-    prog -a: 'usage: prog -a -b'
-    prog: 'usage: prog -a -b'
+    prog -a: 'usage: prog -a -b <exit:1>'
+    prog: 'usage: prog -a -b <exit:1>'
 - docopt: |
     usage: prog (-a -b)
 
@@ -188,8 +188,8 @@
     prog -b -a:
       "-a": true
       "-b": true
-    prog -a: 'usage: prog (-a -b)'
-    prog: 'usage: prog (-a -b)'
+    prog -a: 'usage: prog (-a -b) <exit:1>'
+    prog: 'usage: prog (-a -b) <exit:1>'
 - docopt: |
     usage: prog [-a] -b
 
@@ -202,11 +202,11 @@
     prog -b -a:
       "-a": true
       "-b": true
-    prog -a: 'usage: prog [-a] -b'
+    prog -a: 'usage: prog [-a] -b <exit:1>'
     prog -b:
       "-a": false
       "-b": true
-    prog: 'usage: prog [-a] -b'
+    prog: 'usage: prog [-a] -b <exit:1>'
 - docopt: |
     usage: prog [(-a -b)]
 
@@ -219,8 +219,8 @@
     prog -b -a:
       "-a": true
       "-b": true
-    prog -a: 'usage: prog [(-a -b)]'
-    prog -b: 'usage: prog [(-a -b)]'
+    prog -a: 'usage: prog [(-a -b)] <exit:1>'
+    prog -b: 'usage: prog [(-a -b)] <exit:1>'
     prog:
       "-a": false
       "-b": false
@@ -230,8 +230,8 @@
     -a
     -b
   commands:
-    prog -a -b: 'usage: prog (-a|-b)'
-    prog: 'usage: prog (-a|-b)'
+    prog -a -b: 'usage: prog (-a|-b) <exit:1>'
+    prog: 'usage: prog (-a|-b) <exit:1>'
     prog -a:
       "-a": true
       "-b": false
@@ -244,7 +244,7 @@
     -a
     -b
   commands:
-    prog -a -b: 'usage: prog [ -a | -b ]'
+    prog -a -b: 'usage: prog [ -a | -b ] <exit:1>'
     prog:
       "-a": false
       "-b": false
@@ -258,13 +258,13 @@
   commands:
     prog 10:
       "<arg>": '10'
-    prog 10 20: 'usage: prog <arg>'
-    prog: 'usage: prog <arg>'
+    prog 10 20: 'usage: prog <arg> <exit:1>'
+    prog: 'usage: prog <arg> <exit:1>'
 - docopt: 'usage: prog [<arg>]'
   commands:
     prog 10:
       "<arg>": '10'
-    prog 10 20: 'usage: prog [<arg>]'
+    prog 10 20: 'usage: prog [<arg>] <exit:1>'
     prog:
       "<arg>": 
 - docopt: 'usage: prog <kind> <name> <type>'
@@ -273,8 +273,8 @@
       "<kind>": '10'
       "<name>": '20'
       "<type>": '40'
-    prog 10 20: 'usage: prog <kind> <name> <type>'
-    prog: 'usage: prog <kind> <name> <type>'
+    prog 10 20: 'usage: prog <kind> <name> <type> <exit:1>'
+    prog: 'usage: prog <kind> <name> <type> <exit:1>'
 - docopt: 'usage: prog <kind> [<name> <type>]'
   commands:
     prog 10 20 40:
@@ -285,10 +285,10 @@
       "<kind>": '10'
       "<name>": '20'
       "<type>": 
-    prog: 'usage: prog <kind> [<name> <type>]'
+    prog: 'usage: prog <kind> [<name> <type>] <exit:1>'
 - docopt: 'usage: prog [<kind> | <name> <type>]'
   commands:
-    prog 10 20 40: 'usage: prog [<kind> | <name> <type>]'
+    prog 10 20 40: 'usage: prog [<kind> | <name> <type>] <exit:1>'
     prog 20 40:
       "<kind>": 
       "<name>": '20'
@@ -310,7 +310,7 @@
       "<kind>": 
       "--all": false
       "<name>": '10'
-    prog: 'usage: prog (<kind> --all | <name>)'
+    prog: 'usage: prog (<kind> --all | <name>) <exit:1>'
 - docopt: 'usage: prog [<name> <name>]'
   commands:
     prog 10 20:
@@ -328,7 +328,7 @@
       "<name>":
       - '10'
       - '20'
-    prog 10: 'usage: prog [(<name> <name>)]'
+    prog 10: 'usage: prog [(<name> <name>)] <exit:1>'
     prog:
       "<name>": []
 - docopt: 'usage: prog NAME...'
@@ -340,7 +340,7 @@
     prog 10:
       NAME:
       - '10'
-    prog: 'usage: prog NAME...'
+    prog: 'usage: prog NAME... <exit:1>'
 - docopt: 'usage: prog [NAME]...'
   commands:
     prog 10 20:
@@ -387,7 +387,7 @@
       "--foo": true
     prog --foo=10: |-
       --foo must not have an argument
-      usage: prog (NAME | --foo NAME)
+      usage: prog (NAME | --foo NAME) <exit:1>
 - docopt: |
     usage: prog (NAME | --foo) [--bar | NAME]
 
@@ -473,7 +473,7 @@
       "--aa": true
     prog --a: |-
       --a is not a unique prefix: --aabb, --aa?
-      usage: prog --aabb | --aa
+      usage: prog --aabb | --aa <exit:1>
 - docopt: 'Usage: prog -v'
   commands:
     prog -v:
@@ -488,7 +488,7 @@
       "-v": 2
 - docopt: 'Usage: prog -v ...'
   commands:
-    prog: 'Usage: prog -v ...'
+    prog: 'Usage: prog -v ... <exit:1>'
     prog -v:
       "-v": 1
     prog -vv:
@@ -503,7 +503,7 @@
       "-v": 1
     prog -vv:
       "-v": 2
-    prog -vvvv: 'Usage: prog [-v | -vv | -vvv]'
+    prog -vvvv: 'Usage: prog [-v | -vv | -vvv] <exit:1>'
 - docopt: 'usage: prog [--ver --ver]'
   commands:
     prog --ver --ver:
@@ -520,7 +520,7 @@
       go: 1
     prog go go:
       go: 2
-    prog go go go: 'usage: prog [go go]'
+    prog go go go: 'usage: prog [go go] <exit:1>'
 - docopt: 'usage: prog go...'
   commands:
     prog go go go go go:

@@ -1,5 +1,4 @@
 require 'simplecov'
-# SimpleCov.start { enable_coverage :branch } unless ENV['NOCOV']
 SimpleCov.start unless ENV['NOCOV']
 
 require 'shellwords'
@@ -12,7 +11,7 @@ module RSpecMixin
   def runner(doc, argv)
     DocoptNG.docopt(doc, argv: argv)
   rescue DocoptNG::Exit => e
-    e.message
+    "#{e.message} <exit:#{e.exit_code}>"
   end
 end
 

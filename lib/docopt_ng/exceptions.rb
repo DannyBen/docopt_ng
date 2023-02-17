@@ -14,7 +14,7 @@ module DocoptNG
     attr_reader :exit_code
 
     def initialize(message = '', exit_code: nil)
-      @exit_code = exit_code || 0
+      @exit_code = exit_code || 1
       super "#{message}\n#{self.class.usage}".strip
     end
   end

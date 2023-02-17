@@ -254,12 +254,12 @@ module_function
     help_flags = ['-h', '--help']
     if help && options.any? { |o| help_flags.include?(o.name) && o.value }
       Exit.usage = nil
-      raise Exit, doc.strip
+      raise Exit.new(exit_code: 0), doc.strip
     end
     return unless version && options.any? { |o| o.name == '--version' && o.value }
 
     Exit.usage = nil
-    raise Exit, version
+    raise Exit.new(exit_code: 0), version
   end
 
   def docopt(doc, params = {})
@@ -285,6 +285,6 @@ module_function
       return (pattern.flat + collected).to_h { |a| [a.name, a.value] }
     end
 
-    raise Exit.new(exit_code: 1)
+    raise Exit.new
   end
 end
