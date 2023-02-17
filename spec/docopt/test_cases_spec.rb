@@ -1,5 +1,5 @@
 describe 'integration test cases' do
-  testcases = YAML.load_file 'spec/docopt/cases.yml'
+  testcases = YAML.load_file 'spec/docopt/test_cases.yml'
 
   testcases.each_with_index do |testcase, i|
     describe "Test Case #{i}" do

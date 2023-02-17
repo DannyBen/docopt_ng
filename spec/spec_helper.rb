@@ -1,5 +1,6 @@
 require 'simplecov'
-SimpleCov.start { enable_coverage :branch } unless ENV['NOCOV']
+# SimpleCov.start { enable_coverage :branch } unless ENV['NOCOV']
+SimpleCov.start unless ENV['NOCOV']
 
 require 'shellwords'
 require 'bundler'
