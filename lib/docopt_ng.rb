@@ -253,13 +253,13 @@ module_function
   def extras(help, version, options, doc)
     help_flags = ['-h', '--help']
     if help && options.any? { |o| help_flags.include?(o.name) && o.value }
-      Exit.set_usage(nil)
-      raise Exit, doc.strip
+      Exit.usage = nil
+      raise Exit.new(exit_code: 0), doc.strip
     end
     return unless version && options.any? { |o| o.name == '--version' && o.value }
 
-    Exit.set_usage(nil)
-    raise Exit, version
+    Exit.usage = nil
+    raise Exit.new(exit_code: 0), version
   end
 
   def docopt(doc, params = {})
@@ -267,7 +267,7 @@ module_function
     params = default.merge(params)
     params[:argv] = ARGV unless params[:argv]
 
-    Exit.set_usage(printable_usage(doc))
+    Exit.usage = printable_usage(doc)
     options = parse_defaults(doc)
     pattern = parse_pattern(formal_usage(Exit.usage), options)
     argv = parse_argv(TokenStream.new(params[:argv], Exit), options, params[:options_first])
@@ -285,6 +285,6 @@ module_function
       return (pattern.flat + collected).to_h { |a| [a.name, a.value] }
     end
 
-    raise Exit
+    raise Exit.new
   end
 end

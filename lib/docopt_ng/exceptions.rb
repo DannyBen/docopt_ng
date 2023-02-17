@@ -6,12 +6,15 @@ module DocoptNG
     class << self
       attr_reader :usage
 
-      def set_usage(text = nil)
+      def usage=(text)
         @usage = text || ''
       end
     end
 
-    def initialize(message = '')
+    attr_reader :exit_code
+
+    def initialize(message = '', exit_code: nil)
+      @exit_code = exit_code || 1
       super "#{message}\n#{self.class.usage}".strip
     end
   end

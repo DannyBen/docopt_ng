@@ -20,4 +20,5 @@ begin
   pp Docopt.docopt(doc, version: '1.0.0rc2')
 rescue Docopt::Exit => e
   puts e.message
+  exit e.exit_code
 end
