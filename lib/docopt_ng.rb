@@ -285,6 +285,6 @@ module_function
       return (pattern.flat + collected).to_h { |a| [a.name, a.value] }
     end
 
-    raise Exit.new
+    raise Exit
   end
 end
