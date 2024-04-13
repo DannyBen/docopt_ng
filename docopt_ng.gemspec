@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/dannyben/docopt_ng'
   s.license = 'MIT'
 
-  s.required_ruby_version = '>= 2.7.0'
+  s.required_ruby_version = '>= 3.0'
 
   s.metadata = {
     'bug_tracker_uri'       => 'https://github.com/DannyBen/docopt_ng/issues',
