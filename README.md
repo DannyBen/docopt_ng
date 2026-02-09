@@ -1,5 +1,7 @@
 # Docopt – command line option parser, that will make you smile
 
+![repocard](https://repocard.dannyben.com/svg/docopt_ng.svg)
+
 This is a detached fork of the original [docopt.rb](https://github.com/docopt/docopt.rb).
 
 - For a drop-in replacement, simply `require 'docopt_ng/docopt'`
